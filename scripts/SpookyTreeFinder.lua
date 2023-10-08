@@ -43,7 +43,7 @@ local tree = foundSpookTree()
 
 if not tree then
 	queue_on_teleport([[
-		loadstring(game:HttpGet("https://github.com/NorthernCode-0/lua/scripts/main/TreeFinder.lua"))
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/NorthernCode-0/lua/main/scripts/SpookyTreeFinder.lua"))
 	]])
 	return serverHop()
 end
