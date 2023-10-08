@@ -1,6 +1,6 @@
 repeat
 	task.wait()
-	local character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+	local character = game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
 until character
 
 local function foundSpookTree()
@@ -51,7 +51,7 @@ local function serverHop()
 	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id, game:GetService("Players").LocalPlayer)
 end
 
-local tree = foundSpookTree()
+local tree: Model = foundSpookTree()
 
 if not tree then
 	queue_on_teleport([[
@@ -66,16 +66,16 @@ sendWebhook(url, {
     embeds = {
         {
             title = ("%s tree found"):format(tree.TreeClass.Value);
-            description = "Model Size - x",
+            description = ("Model Size - %d"):format(tree:GetBoundingBox()),
             color = nil,
             fields = {
                 {
                     name = "Join Server",
-                    value = ([[game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game:GetService("Players").LocalPlayer)]]):format(game.PlaceId, game.JobId)
+                    value = ([[```game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game:GetService("Players").LocalPlayer)```]]):format(game.PlaceId, game.JobId)
                 },
                 {
                     name = "Teleport [When in server]",
-                    value = ([[game:GetService("Players").LocalPlayer.Character:PivotTo(CFrame.new(%d, %d, %d))]]):format(tree:GetPivot().X, tree:GetPivot().Y, tree:GetPivot().Z)
+                    value = ([[```game:GetService("Players").LocalPlayer.Character:PivotTo(CFrame.new(%d, %d, %d))```]]):format(tree:GetPivot().X, tree:GetPivot().Y, tree:GetPivot().Z)
                 }
             }
         }
