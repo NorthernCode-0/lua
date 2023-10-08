@@ -54,7 +54,7 @@ end
 local tree: Model = foundSpookTree()
 
 if not tree then
-	queue_on_teleport([[
+	queueonteleport([[
 		loadstring(game:HttpGet("https://github.com/NorthernCode-0/lua/scripts/main/TreeFinder.lua"))
 	]])
 	return serverHop()
