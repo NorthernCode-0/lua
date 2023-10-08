@@ -1,6 +1,6 @@
 repeat
 	task.wait()
-	local character = game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+	local character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
 until character
 
 local function foundSpookTree()
