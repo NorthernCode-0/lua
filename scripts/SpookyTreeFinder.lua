@@ -5,6 +5,8 @@ queueonteleport([[
 			task.wait()
 			local character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
 		until character
+		
+		print("this works")
 
 		loadstring(game:HttpGet("https://github.com/NorthernCode-0/lua/scripts/main/TreeFinder.lua"))
 ]])
@@ -26,7 +28,7 @@ local function foundSpookTree()
 end
 
 local function sendWebhook(url, data)
-	local requestFunction = syn.request or request or http_request or HttpPost
+	local requestFunction = request or syn.request or http_request or HttpPost
 
 	requestFunction({
 		URl = url;
