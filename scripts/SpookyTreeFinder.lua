@@ -1,3 +1,8 @@
+repeat
+	task.wait()
+	local character = game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+until character.Humanoid.Health == 100
+
 local function foundSpookTree()
 	for _, region in next, workspace:GetChildren() do
 		if region.Name ~= "TreeRegion" then continue end
@@ -76,3 +81,5 @@ sendWebhook(url, {
         }
     }
 })
+
+serverHop()
