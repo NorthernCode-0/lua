@@ -60,13 +60,13 @@ if not tree then
 	return serverHop()
 end
 
-local url = "https://discord.com/api/webhooks/1160701634725281862/zfCU-C2MXOHns4K41PZQhYQ_aNOvOYiaBDFazOAu1z0quxTskKDXwUjMjzjcFsISItk9"
+local url = "https://discord.com/api/webhooks/1160701634725281862/zfCU-C2MXOHns4K41PZQhYQ_aNOvOYiaBDFazOAu1z0quxTskKDXwUjMjzjcFsISItk9" -- please dont raid this
 
 sendWebhook(url, {
     embeds = {
         {
             title = ("%s tree found"):format(tree.TreeClass.Value);
-            description = ("Model Size - %d"):format(tree:GetBoundingBox()),
+            description = ("Model Size - %d"):format(tree:GetBoundingBox().X + tree:GetBoundingBox().Y + tree:GetBoundingBox().Z),
             color = nil,
             fields = {
                 {
