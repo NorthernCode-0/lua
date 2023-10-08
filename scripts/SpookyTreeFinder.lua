@@ -1,7 +1,13 @@
-repeat
-	task.wait()
-	local character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
-until character
+queueonteleport([[
+		repeat task.wait() until game:IsLoaded()
+		
+		repeat
+			task.wait()
+			local character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+		until character
+
+		loadstring(game:HttpGet("https://github.com/NorthernCode-0/lua/scripts/main/TreeFinder.lua"))
+]])
 
 local function foundSpookTree()
 	for _, region in next, workspace:GetChildren() do
@@ -20,10 +26,10 @@ local function foundSpookTree()
 end
 
 local function sendWebhook(url, data)
-	local requestFunction = request or syn.request or http_request or HttpPost
+	local requestFunction = syn.request or request or http_request or HttpPost
 
 	requestFunction({
-		Url = url;
+		URl = url;
 		Body = game:GetService("HttpService"):JSONEncode(data);
 		Method = "POST";
 		Headers = {["content-type"] = "application/json"}
@@ -54,19 +60,16 @@ end
 local tree: Model = foundSpookTree()
 
 if not tree then
-	queueonteleport([[
-		loadstring(game:HttpGet("https://github.com/NorthernCode-0/lua/scripts/main/TreeFinder.lua"))
-	]])
 	return serverHop()
 end
 
-local url = "https://discord.com/api/webhooks/1160701634725281862/zfCU-C2MXOHns4K41PZQhYQ_aNOvOYiaBDFazOAu1z0quxTskKDXwUjMjzjcFsISItk9" -- please dont raid this
+local url = "https://discord.com/api/webhooks/1160701634725281862/zfCU-C2MXOHns4K41PZQhYQ_aNOvOYiaBDFazOAu1z0quxTskKDXwUjMjzjcFsISItk9"
 
 sendWebhook(url, {
     embeds = {
         {
             title = ("%s tree found"):format(tree.TreeClass.Value);
-            description = ("Model Size - %d"):format(tree:GetBoundingBox().X + tree:GetBoundingBox().Y + tree:GetBoundingBox().Z),
+            description = ("Model Size - %s"):format(tostring(tree:GetBoundingBox())),
             color = nil,
             fields = {
                 {
