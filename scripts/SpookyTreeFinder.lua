@@ -1,7 +1,7 @@
 repeat
 	task.wait()
-	local character = game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
-until character.Humanoid.Health == 100
+	local character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+until character
 
 local function foundSpookTree()
 	for _, region in next, workspace:GetChildren() do
