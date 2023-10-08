@@ -20,7 +20,7 @@ local function foundSpookTree()
 end
 
 local function sendWebhook(url, data)
-	local requestFunction = syn.request or request or http_request or HttpPost
+	local requestFunction = request or syn.request or http_request or HttpPost
 
 	requestFunction({
 		URl = url;
