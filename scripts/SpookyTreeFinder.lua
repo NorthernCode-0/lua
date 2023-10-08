@@ -31,8 +31,15 @@ local function serverHop()
 	local server, nextServer
 
 	repeat
-		local rawData = game:GetService("HttpService"):JSONDecode(game:HttpGet(servers.."&cursor="..nextServer or ""))
+		local rawData
+		if nextServer then
+			rawData = game:GetService("HttpService"):JSONDecode(game:HttpGet(servers.."&cursor="..nextServer or ""))
+		else
+			rawData = game:GetService("HttpService"):JSONDecode(game:HttpGet(servers))
+		end
+		
 		local randomServer = math.random(1, #rawData.data)
+		server = rawData.data[randomServer]
 		nextServer = rawData.nextPageCursor
 	until server
 
@@ -43,7 +50,7 @@ local tree = foundSpookTree()
 
 if not tree then
 	queue_on_teleport([[
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/NorthernCode-0/lua/main/scripts/SpookyTreeFinder.lua"))
+		loadstring(game:HttpGet("https://github.com/NorthernCode-0/lua/scripts/main/TreeFinder.lua"))
 	]])
 	return serverHop()
 end
